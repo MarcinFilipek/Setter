@@ -1,0 +1,2 @@
+main.cpp:4:5:int main()	16	static
+main.cpp:15:6:void Error_Handler()	4	static
