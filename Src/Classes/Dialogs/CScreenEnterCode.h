@@ -14,11 +14,18 @@
 
 class CScreenEnterCode: public CScreen
 {
-public:;
-	static const uint8_t NUM_OF_EDIT_NUMBER = 9;
+public:
+	CScreenEnterCode(uint8_t num_digit): NUM_OF_EDIT_NUMBER(num_digit){
+		m_widgetEditNumber = new CWidgetEditNumber[NUM_OF_EDIT_NUMBER];
+	}
+	virtual ~CScreenEnterCode(){
+		delete m_widgetEditNumber;
+	}
+	const uint8_t NUM_OF_EDIT_NUMBER;
 private:
     CWidgetButtonsBar m_widgetButtonsBar;
-    CWidgetEditNumber m_widgetEditNumber[NUM_OF_EDIT_NUMBER];
+//    CWidgetEditNumber m_widgetEditNumber[NUM_OF_EDIT_NUMBER];
+    CWidgetEditNumber* m_widgetEditNumber;
     uint32_t m_title;
     int8_t m_pointer;
     bool m_result;

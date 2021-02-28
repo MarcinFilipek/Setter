@@ -39,28 +39,31 @@ void CMenuGlowne::onItemSelected(SMenuItem* menuItem)
 	{
 	case CNapisy::IDT_PAROWANIE:
 	{
-		CScreenEnterCode screen;
-		screen.init(CNapisy::IDT_ADRES);
-		CContext::showScreen(&screen);
+		CScreenEnterCode* screen = new CScreenEnterCode(9);
+		screen->init(CNapisy::IDT_ADRES);
+		CContext::showScreen(screen);
 		int32_t result = 0;
-		if(screen.getResult(&result))
+		if(screen->getResult(&result))
 		{
 			Driver::getInstance().getDriverCommunication()->getMotoCounterSetter()->setCounterAddress(result);
 		}
+		delete screen;
 		break;
 	}
 	case CNapisy::IDT_PRACA:
 	{
-		CScreenEnterCode screen;
-		screen.init(CNapisy::IDT_PRACA);
-		CContext::showScreen(&screen);
+		CScreenEnterCode* screen = new CScreenEnterCode(3);
+		screen->init(CNapisy::IDT_PRACA);
+		CContext::showScreen(screen);
+		delete screen;
 		break;
 	}
 	case CNapisy::IDT_EDYTUJ:
 	{
-		CScreenEnterCode screen;
-		screen.init(CNapisy::IDT_EDYTUJ);
-		CContext::showScreen(&screen);
+		CScreenEnterCode* screen = new CScreenEnterCode(4);
+		screen->init(CNapisy::IDT_EDYTUJ);
+		CContext::showScreen(screen);
+		delete screen;
 		break;
 	}
 	default:
