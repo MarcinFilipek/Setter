@@ -18,23 +18,34 @@
 #include "CDriverBuzzerAsync.h"
 #include "CDamperBoolInterface.h"
 #include "CDigitalInput.h"
+#include "DriverCommunication.h"
 
 class Driver
 {
 public:
 	Driver()
-		{
-		}
+	{
+	}
 	virtual ~Driver()
 	{
 	}
 	void init();
 	static Driver& getInstance();
-	CDriverI2C* getI2C(){ return &i2c; }
-	CRTCalendar* getRtc(){ return &rtc; }
+	CDriverI2C* getI2C()
+	{
+		return &i2c;
+	}
+	CRTCalendar* getRtc()
+	{
+		return &rtc;
+	}
 	CSystem::CDelayFunctions* getDelayFunctions(void)
 	{
 		return &delayFunctions;
+	}
+	DriverCommunication* getDriverCommunication()
+	{
+		return &driverCommunication;
 	}
 private:
 	CDriverI2C i2c;
@@ -50,10 +61,13 @@ private:
 	CDigitalInput m_keyUp;
 	CDamperBoolInterface m_damperBoolInterface;
 
+	DriverCommunication driverCommunication;
+
 	void initEeprom(void);
 	void initRtc(void);
 	void initBacklight(void);
 	void initBuzzer(void);
+	void initRadioSpi(void);
 };
 
 #endif /* DRIVER_DRIVER_H_ */

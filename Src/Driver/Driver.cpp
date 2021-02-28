@@ -23,6 +23,9 @@ void Driver::init()
 	initRtc();
 	initBacklight();
 	initBuzzer();
+	initRadioSpi();
+	driverCommunication.init();
+
 	CGUI::getInstance().init(&delayFunctions, deviceID, &rtc, &backlightDriver, &buzzerAsync);
 	CGUI::getInstance().show();
 }
@@ -94,4 +97,35 @@ void Driver::initBuzzer()
 	buzzerHrd.init(&initStruct, 4000, CSystem::getSystemClockFreq());
 	buzzerAsync.init(&buzzerHrd);
 	CSystem::addFastInterruptUpdatable(&buzzerAsync);
+}
+
+void Driver::initRadioSpi(void)
+{
+	GPIO_InitTypeDef GPIO_InitStruct;
+
+	__HAL_RCC_SPI2_CLK_ENABLE();
+
+	GPIO_InitStruct.Pin = GPIO_PIN_13;
+	GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
+	HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+	GPIO_InitStruct.Pin = GPIO_PIN_14;
+	GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
+	HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+	GPIO_InitStruct.Pin = GPIO_PIN_15;
+	GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
+	HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+	GPIO_InitStruct.Pin = GPIO_PIN_12;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
+	HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 }

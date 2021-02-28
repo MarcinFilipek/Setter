@@ -7,12 +7,16 @@
 
 #include "CMenuGlowne.h"
 #include "CScreenMenu.h"
+#include "CScreenEnterCode.h"
 #include "SVersion.h"
 #include "CGUI.h"
+#include "Driver.h"
 
 const AMenuList::SMenuItem CMenuGlowne::MENU_ITEMS[] =
 {
-	{CNapisy::IDT_INFORMACJA_O_PROGRAMIE},
+		{CNapisy::IDT_PAROWANIE},
+		{CNapisy::IDT_PRACA},
+		{CNapisy::IDT_EDYTUJ},
 };
 
 CMenuGlowne::CMenuGlowne() :
@@ -33,7 +37,33 @@ void CMenuGlowne::onItemSelected(SMenuItem* menuItem)
 {
 	switch (menuItem->text)
 	{
-		default:
+	case CNapisy::IDT_PAROWANIE:
+	{
+		CScreenEnterCode screen;
+		screen.init(CNapisy::IDT_ADRES);
+		CContext::showScreen(&screen);
+		int32_t result = 0;
+		if(screen.getResult(&result))
+		{
+			Driver::getInstance().getDriverCommunication()->getMotoCounterSetter()->setCounterAddress(result);
+		}
+		break;
+	}
+	case CNapisy::IDT_PRACA:
+	{
+		CScreenEnterCode screen;
+		screen.init(CNapisy::IDT_PRACA);
+		CContext::showScreen(&screen);
+		break;
+	}
+	case CNapisy::IDT_EDYTUJ:
+	{
+		CScreenEnterCode screen;
+		screen.init(CNapisy::IDT_EDYTUJ);
+		CContext::showScreen(&screen);
+		break;
+	}
+	default:
 			break;
 	}
 }

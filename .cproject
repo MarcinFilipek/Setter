@@ -192,7 +192,13 @@
 								<option id="com.atollic.truestudio.gpp.directories.select.330946435" name="Include path" superClass="com.atollic.truestudio.gpp.directories.select" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../Inc"/>
 									<listOptionValue builtIn="false" value="../Src/Driver"/>
+									<listOptionValue builtIn="false" value="../Src/DriverCommunication"/>
+									<listOptionValue builtIn="false" value="../Src/wtp3conf"/>
 									<listOptionValue builtIn="false" value="../Src/Classes/Eeprom"/>
+									<listOptionValue builtIn="false" value="../Src/Classes/wtp"/>
+									<listOptionValue builtIn="false" value="../Src/Classes/MotoCounterSetter"/>
+									<listOptionValue builtIn="false" value="../Src/Classes/Dialogs"/>
+									<listOptionValue builtIn="false" value="../Src/Classes/Widgets"/>
 									<listOptionValue builtIn="false" value="../Src/Classes/CEEPROMVar"/>
 									<listOptionValue builtIn="false" value="../Src/Classes/CFlashSignature"/>
 									<listOptionValue builtIn="false" value="../Src/Classes/CRTCalendar"/>
@@ -293,7 +299,7 @@
 					</fileInfo>
 					<sourceEntries>
 						<entry excluding="STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_timebase_tim_template.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
-						<entry excluding="Classes/CST7565Driver/st7565HAL_ST267_F1.cpp|Classes/CGraphicFontSubtitlesTest/CGraphicFontHAL_template.cpp|Classes/CST7565Driver/st7565HAL_ST480_F2.cpp|Classes/CST7565Driver/st7565HAL_ST461_F1.cpp|Classes/CTextResources/CTextResourcesHAL_template.cpp|Classes/CST7565Driver/st7565HAL_ST920_F2.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Src"/>
+						<entry excluding="Classes/wtp/crc32_basic_std.cpp|Classes/CST7565Driver/st7565HAL_ST267_F1.cpp|Classes/CGraphicFontSubtitlesTest/CGraphicFontHAL_template.cpp|Classes/CST7565Driver/st7565HAL_ST480_F2.cpp|Classes/CST7565Driver/st7565HAL_ST461_F1.cpp|Classes/CTextResources/CTextResourcesHAL_template.cpp|Classes/CST7565Driver/st7565HAL_ST920_F2.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="startup"/>
 					</sourceEntries>
 				</configuration>
@@ -482,7 +488,7 @@
 					</fileInfo>
 					<sourceEntries>
 						<entry excluding="STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_timebase_tim_template.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
-						<entry excluding="Classes/CST7565Driver/st7565HAL_ST267_F1.cpp|Classes/CGraphicFontSubtitlesTest/CGraphicFontHAL_template.cpp|Classes/CST7565Driver/st7565HAL_ST480_F2.cpp|Classes/CST7565Driver/st7565HAL_ST461_F1.cpp|Classes/CTextResources/CTextResourcesHAL_template.cpp|Classes/CST7565Driver/st7565HAL_ST920_F2.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Src"/>
+						<entry excluding="Classes/wtp/crc32_basic_std.cpp|Classes/CST7565Driver/st7565HAL_ST267_F1.cpp|Classes/CGraphicFontSubtitlesTest/CGraphicFontHAL_template.cpp|Classes/CST7565Driver/st7565HAL_ST480_F2.cpp|Classes/CST7565Driver/st7565HAL_ST461_F1.cpp|Classes/CTextResources/CTextResourcesHAL_template.cpp|Classes/CST7565Driver/st7565HAL_ST920_F2.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="startup"/>
 					</sourceEntries>
 				</configuration>

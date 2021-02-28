@@ -1,6 +1,8 @@
 #include "stm32f1xx_it.h"
 #include "hal.h"
 #include "Driver.h"
+#include "rfm22HRD.h"
+#include "rfm22frame.h"
 
 void NMI_Handler(void)
 {
@@ -95,4 +97,10 @@ void RTC_IRQHandler()
 		RTC->CRL &= (uint16_t)~RTC_IT_SEC;
 		Driver::getInstance().getRtc()->RTCIRQHandler();
 	}
+}
+
+void EXTI15_10_IRQHandler()
+{
+	HAL_GPIO_EXTI_IRQHandler(RFM22_INT_BIT);
+	rfm22frame_isr();
 }
