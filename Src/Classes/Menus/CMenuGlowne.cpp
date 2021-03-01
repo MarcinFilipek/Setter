@@ -35,6 +35,7 @@ void CMenuGlowne::updateItem(SMenuItem *menuItem)
 
 void CMenuGlowne::onItemSelected(SMenuItem* menuItem)
 {
+	MotoCounterSetter* motoCounterSetter = Driver::getInstance().getDriverCommunication()->getMotoCounterSetter();
 	switch (menuItem->text)
 	{
 	case CNapisy::IDT_PAROWANIE:
@@ -45,7 +46,7 @@ void CMenuGlowne::onItemSelected(SMenuItem* menuItem)
 		int32_t result = 0;
 		if(screen->getResult(&result))
 		{
-			Driver::getInstance().getDriverCommunication()->getMotoCounterSetter()->setCounterAddress(result);
+			motoCounterSetter->setCounterAddress(result);
 		}
 		delete screen;
 		break;
@@ -55,6 +56,11 @@ void CMenuGlowne::onItemSelected(SMenuItem* menuItem)
 		CScreenEnterCode* screen = new CScreenEnterCode(3);
 		screen->init(CNapisy::IDT_PRACA);
 		CContext::showScreen(screen);
+		int32_t result = 0;
+		if(screen->getResult(&result))
+		{
+			motoCounterSetter->setNextInspection(result);
+		}
 		delete screen;
 		break;
 	}
@@ -63,6 +69,11 @@ void CMenuGlowne::onItemSelected(SMenuItem* menuItem)
 		CScreenEnterCode* screen = new CScreenEnterCode(4);
 		screen->init(CNapisy::IDT_EDYTUJ);
 		CContext::showScreen(screen);
+		int32_t result = 0;
+		if(screen->getResult(&result))
+		{
+			motoCounterSetter->setCurrentCounter(result);
+		}
 		delete screen;
 		break;
 	}

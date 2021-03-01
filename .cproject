@@ -195,6 +195,7 @@
 									<listOptionValue builtIn="false" value="../Src/DriverCommunication"/>
 									<listOptionValue builtIn="false" value="../Src/wtp3conf"/>
 									<listOptionValue builtIn="false" value="../Src/Classes/Eeprom"/>
+									<listOptionValue builtIn="false" value="../Src/Classes/CommVar"/>
 									<listOptionValue builtIn="false" value="../Src/Classes/wtp"/>
 									<listOptionValue builtIn="false" value="../Src/Classes/MotoCounterSetter"/>
 									<listOptionValue builtIn="false" value="../Src/Classes/Dialogs"/>
@@ -233,6 +234,7 @@
 									<listOptionValue builtIn="false" value="../Src/Classes/CSystem"/>
 									<listOptionValue builtIn="false" value="../Src/Classes/Interfaces"/>
 									<listOptionValue builtIn="false" value="../Src/Classes/Interfaces/idatetime"/>
+									<listOptionValue builtIn="false" value="../Src/Classes/Interfaces/icommvar"/>
 									<listOptionValue builtIn="false" value="../Src/Classes/Interfaces/ibuzzer"/>
 									<listOptionValue builtIn="false" value="../Src/Classes/Interfaces/ionkeylistener"/>
 									<listOptionValue builtIn="false" value="../Src/Classes/Interfaces/iboolinterface"/>
