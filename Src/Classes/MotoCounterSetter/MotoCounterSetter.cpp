@@ -29,12 +29,12 @@ void MotoCounterSetter::createFrame(Wtp3Driver* driver)
 	driver->endFrame();
 }
 
-void MotoCounterSetter::setNextInspection(uint16_t value)
+void MotoCounterSetter::setNextInspection(uint32_t value)
 {
 	nextInspection.setData(value);
 }
 
-void MotoCounterSetter::setCurrentCounter(uint16_t value)
+void MotoCounterSetter::setCurrentCounter(uint32_t value)
 {
 	currentCounter.setData(value);
 }

@@ -53,7 +53,7 @@ void CMenuGlowne::onItemSelected(SMenuItem* menuItem)
 	}
 	case CNapisy::IDT_PRACA:
 	{
-		CScreenEnterCode* screen = new CScreenEnterCode(3);
+		CScreenEnterCode* screen = new CScreenEnterCode(8);
 		screen->init(CNapisy::IDT_PRACA);
 		CContext::showScreen(screen);
 		int32_t result = 0;
@@ -66,7 +66,7 @@ void CMenuGlowne::onItemSelected(SMenuItem* menuItem)
 	}
 	case CNapisy::IDT_EDYTUJ:
 	{
-		CScreenEnterCode* screen = new CScreenEnterCode(4);
+		CScreenEnterCode* screen = new CScreenEnterCode(8);
 		screen->init(CNapisy::IDT_EDYTUJ);
 		CContext::showScreen(screen);
 		int32_t result = 0;

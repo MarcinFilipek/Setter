@@ -17,8 +17,8 @@ class MotoCounterSetter: public IWtp3Device
 public:
 	MotoCounterSetter(): counterAddress(0)
 	{
-		nextInspection.setCommand(1);
-		currentCounter.setCommand(2);
+		nextInspection.setCommand(CounterCommand::NEXT_INSPECTION);
+		currentCounter.setCommand(CounterCommand::SET_CURRENT_COUNTER);
 		parameters[0] = &nextInspection;
 		parameters[1] = &currentCounter;
 	}
@@ -53,14 +53,14 @@ public:
 	}
 	void setCounterAddress(uint32_t adr);
 
-	void setNextInspection(uint16_t value);
-	void setCurrentCounter(uint16_t value);
+	void setNextInspection(uint32_t value);
+	void setCurrentCounter(uint32_t value);
 private:
 	uint32_t counterAddress;
 	static const uint8_t NUM_OF_PARAMS = 2;
 	ICommVar* parameters[NUM_OF_PARAMS];
-	CommVar<uint16_t> nextInspection;
-	CommVar<uint16_t> currentCounter;
+	CommVar<uint32_t> nextInspection;
+	CommVar<uint32_t> currentCounter;
 };
 
 #endif /* CLASSES_MOTOCOUNTERSETTER_MOTOCOUNTERSETTER_H_ */
