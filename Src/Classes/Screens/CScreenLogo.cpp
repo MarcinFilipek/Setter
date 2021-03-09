@@ -101,24 +101,17 @@ void CScreenLogo::draw()
     CST7565Driver::suspendDrawing();
     CST7565Driver::clear();
 
-    int32_t firmID = FIRMA_ELIAS;
-
     char buffer[16];
 
-    CImgData::TImgAddress logo = CImgData::IMG_LOGO_TECH;
-    uint8_t posY = 15;
+    CImgData::TImgAddress logo = CImgData::IMG_LOGO_LEMARPOL;
+    uint8_t posY = 5;
 
-    if(firmID == FIRMA_ELIAS)
-    {
-    	logo = CImgData::IMG_LOGO_ELIAS_DUZE;
-    	posY = 5;
-    }
 
 	CST7565Driver::imgBitBltCenterBox(0, posY, 127, 0, logo, CST7565Driver::BIT_OPERATION_OR);
 
 	CST7565Driver::fill(0, 47, 127, 47, CST7565Driver::FILL_OPERATION_FILL);
 
-    	snprintf(buffer, sizeof(buffer), "RP-5");
+    	snprintf(buffer, sizeof(buffer), "SC-1");
 
 	CGraphicFont::drawText( //
 			20,
@@ -133,7 +126,7 @@ void CScreenLogo::draw()
 			CGraphicFont::MULTILINE_OFF,
 			{CST7565Driver::BIT_OPERATION_OR});
 
-	sprintf(buffer, "%d.%d.%d",1, 2, 3);
+	sprintf(buffer, "%d.%d.%d",1, 0, 0);
 
 	CGraphicFont::drawText(
 			55,

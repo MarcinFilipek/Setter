@@ -115,11 +115,11 @@ void CScreenDevice::draw()
 
 //    drawHeader(dateTime);
 
-    char buffer[60];
+//    char buffer[60];
 
 //    SlaveCommunicator* slave = CGUI::getDriverCommunication()->getSlaveCommunicator();
 
-    uint16_t startHeight = 19;
+//    uint16_t startHeight = 19;
 
     CST7565Driver::fill(1, 52, 126, 52, CST7565Driver::FILL_OPERATION_FILL);
 
@@ -142,25 +142,25 @@ void CScreenDevice::draw()
 //            {CST7565Driver::BIT_OPERATION_OR});
 
 //    int16_t rssi = CGUI::getDriverCommunication()->getRepeater()->getDevicePool()->getItem(m_currentPage)->getSignal(0);//slave->getRssi();
-    int16_t rssi = 85;
-    int8_t signal = 0;
-
-    if(rssi >= 85)
-    {
-    	signal = 4;
-    }
-    else if(rssi >= 60)
-    {
-    	signal = 3;
-    }
-    else if(rssi >= 40)
-    {
-    	signal = 2;
-    }
-    else if(rssi >= 15)
-    {
-    	signal = 1;
-    }
+//    int16_t rssi = 85;
+//    int8_t signal = 0;
+//
+//    if(rssi >= 85)
+//    {
+//    	signal = 4;
+//    }
+//    else if(rssi >= 60)
+//    {
+//    	signal = 3;
+//    }
+//    else if(rssi >= 40)
+//    {
+//    	signal = 2;
+//    }
+//    else if(rssi >= 15)
+//    {
+//    	signal = 1;
+//    }
 
 //    if(CGUI::getDriverCommunication()->getRepeater()->getDevicePool()->getItem(m_currentPage)->hasCommunicationTimeout())
 //    {
@@ -172,23 +172,23 @@ void CScreenDevice::draw()
 //        signal = 0;
 //    }
 
-    for (int16_t i = 0; i < 4; i++)
-    {
-        int16_t x1 = 76 + 11 * i;
-        int16_t y1 = 40 - 9 * i;
-        int16_t x2 = x1 + 8;
-        int16_t y2 = 50;
-        if (i < signal)
-        {
-            CST7565Driver::fill(x1, y1, x2, y2, CST7565Driver::FILL_OPERATION_FILL);
-        }
-        else
-        {
-            CST7565Driver::drawRectangle(x1, y1, x2, y2);
-        }
-    }
+//    for (int16_t i = 0; i < 4; i++)
+//    {
+//        int16_t x1 = 76 + 11 * i;
+//        int16_t y1 = 40 - 9 * i;
+//        int16_t x2 = x1 + 8;
+//        int16_t y2 = 50;
+//        if (i < signal)
+//        {
+//            CST7565Driver::fill(x1, y1, x2, y2, CST7565Driver::FILL_OPERATION_FILL);
+//        }
+//        else
+//        {
+//            CST7565Driver::drawRectangle(x1, y1, x2, y2);
+//        }
+//    }
 
-    updateLinkAnimation();
+//    updateLinkAnimation();
 //
 //    if(slave->hasCommunication())
 //    {
@@ -201,29 +201,29 @@ void CScreenDevice::draw()
 
 void CScreenDevice::updateLinkAnimation(bool draw)
 {
-    static const uint16_t COMMUNICATION[8] = {
-    	CImgData::IMG_COMMUNICATION_0,
-    	CImgData::IMG_COMMUNICATION_1,
-    	CImgData::IMG_COMMUNICATION_2,
-    	CImgData::IMG_COMMUNICATION_3,
-    	CImgData::IMG_COMMUNICATION_0,
-    	CImgData::IMG_COMMUNICATION_3,
-    	CImgData::IMG_COMMUNICATION_2,
-    	CImgData::IMG_COMMUNICATION_1,
-    };
+//    static const uint16_t COMMUNICATION[8] = {
+//    	CImgData::IMG_COMMUNICATION_0,
+//    	CImgData::IMG_COMMUNICATION_1,
+//    	CImgData::IMG_COMMUNICATION_2,
+//    	CImgData::IMG_COMMUNICATION_3,
+//    	CImgData::IMG_COMMUNICATION_0,
+//    	CImgData::IMG_COMMUNICATION_3,
+//    	CImgData::IMG_COMMUNICATION_2,
+//    	CImgData::IMG_COMMUNICATION_1,
+//    };
+//
+//    static const uint16_t NOT_REGISTERED[2] = {
+//    	CImgData::IMG_COMMUNICATION_EMPTY,
+//		CImgData::IMG_NOT_REGISTERED
+//    };
+//
+//    static const uint16_t NO_COMMUNICATION[2] = {
+//		CImgData::IMG_COMMUNICATION_EMPTY,
+//		CImgData::IMG_NO_COMMUNICATION
+//    };
 
-    static const uint16_t NOT_REGISTERED[2] = {
-    	CImgData::IMG_COMMUNICATION_EMPTY,
-		CImgData::IMG_NOT_REGISTERED
-    };
 
-    static const uint16_t NO_COMMUNICATION[2] = {
-		CImgData::IMG_COMMUNICATION_EMPTY,
-		CImgData::IMG_NO_COMMUNICATION
-    };
-
-
-    uint32_t status = CNapisy::IDT_PRACA;
+//    uint32_t status = CNapisy::IDT_PRACA;
 //    if(CGUI::getDriverCommunication()->getRepeater()->getDevicePool()->getItem(m_currentPage)->getEndpointAddr(0)==0)
 //    {
 //  		status = CNapisy::IDT_NIEZAREJESTROWANY;
@@ -233,98 +233,98 @@ void CScreenDevice::updateLinkAnimation(bool draw)
 //               status = CNapisy::IDT_BRAK_KOMUNIKACJI;
 //    }
 
-    if(m_linkStatus != status)
-    {
-    	m_linkAnimationFrame = 0;
-    	m_linkStatus = status;
-    }
-
-    if(draw)
-    {
-        CST7565Driver::suspendDrawing();
-    	uint32_t img = CImgData::IMG_NULL;
-    	switch(m_linkStatus)
-    	{
-    		case CNapisy::IDT_NIEZAREJESTROWANY:
-    		{
-    			img = NOT_REGISTERED[m_linkAnimationFrame];
-    			if(m_linkAnimationFrame == 0)
-    			{
-    				m_linkAnimationFrame++;
-    			}
-    			else
-    			{
-    				m_linkAnimationFrame = 0;
-    			}
-    		}
-    		break;
-
-    		case CNapisy::IDT_BRAK_KOMUNIKACJI:
-    		{
-    			img = NO_COMMUNICATION[m_linkAnimationFrame];
-    			if(m_linkAnimationFrame == 0)
-    			{
-    				m_linkAnimationFrame++;
-    			}
-    			else
-    			{
-    				m_linkAnimationFrame = 0;
-    			}
-    		}
-    		break;
-
-    		case CNapisy::IDT_PRACA:
-    		{
-    			img = COMMUNICATION[m_linkAnimationFrame];
-    			if(m_linkAnimationFrame < 7)
-    			{
-    				m_linkAnimationFrame++;
-    			}
-    			else
-    			{
-    				m_linkAnimationFrame = 0;
-    			}
-    		}
-    		break;
-    	}
-
-        CGraphicFont::drawText( //
-                0,
-    			18,
-    			85,
-    			28,
-				status,
-    			0,
-                CFont::FONT_1,
-                CGraphicFont::PR_NORMAL,
-                CGraphicFont::AT_CENTER,
-                CGraphicFont::MULTILINE_CENTER,
-                {CST7565Driver::BIT_OPERATION_OR});
-    	CST7565Driver::imgBitBlt(25, 32, img, CST7565Driver::BIT_OPERATION_OR); //33x15
-        CST7565Driver::resumeDrawing();
-    }
+//    if(m_linkStatus != status)
+//    {
+//    	m_linkAnimationFrame = 0;
+//    	m_linkStatus = status;
+//    }
+//
+//    if(draw)
+//    {
+//        CST7565Driver::suspendDrawing();
+//    	uint32_t img = CImgData::IMG_NULL;
+//    	switch(m_linkStatus)
+//    	{
+//    		case CNapisy::IDT_NIEZAREJESTROWANY:
+//    		{
+//    			img = NOT_REGISTERED[m_linkAnimationFrame];
+//    			if(m_linkAnimationFrame == 0)
+//    			{
+//    				m_linkAnimationFrame++;
+//    			}
+//    			else
+//    			{
+//    				m_linkAnimationFrame = 0;
+//    			}
+//    		}
+//    		break;
+//
+//    		case CNapisy::IDT_BRAK_KOMUNIKACJI:
+//    		{
+//    			img = NO_COMMUNICATION[m_linkAnimationFrame];
+//    			if(m_linkAnimationFrame == 0)
+//    			{
+//    				m_linkAnimationFrame++;
+//    			}
+//    			else
+//    			{
+//    				m_linkAnimationFrame = 0;
+//    			}
+//    		}
+//    		break;
+//
+//    		case CNapisy::IDT_PRACA:
+//    		{
+//    			img = COMMUNICATION[m_linkAnimationFrame];
+//    			if(m_linkAnimationFrame < 7)
+//    			{
+//    				m_linkAnimationFrame++;
+//    			}
+//    			else
+//    			{
+//    				m_linkAnimationFrame = 0;
+//    			}
+//    		}
+//    		break;
+//    	}
+//
+//        CGraphicFont::drawText( //
+//                0,
+//    			18,
+//    			85,
+//    			28,
+//				status,
+//    			0,
+//                CFont::FONT_1,
+//                CGraphicFont::PR_NORMAL,
+//                CGraphicFont::AT_CENTER,
+//                CGraphicFont::MULTILINE_CENTER,
+//                {CST7565Driver::BIT_OPERATION_OR});
+//    	CST7565Driver::imgBitBlt(25, 32, img, CST7565Driver::BIT_OPERATION_OR); //33x15
+//        CST7565Driver::resumeDrawing();
+//    }
 }
 
 void CScreenDevice::drawHeader(IDateTime *dateTime)
 {
-    static const uint16_t FIRE[8] = {
-    		CImgData::IMG_HEATING_ANIM_1,
-			CImgData::IMG_HEATING_ANIM_2,
-			CImgData::IMG_HEATING_ANIM_3,
-			CImgData::IMG_HEATING_ANIM_4,
-			CImgData::IMG_HEATING_ANIM_5,
-			CImgData::IMG_HEATING_ANIM_4,
-			CImgData::IMG_HEATING_ANIM_3,
-			CImgData::IMG_HEATING_ANIM_2
-    };
-    static uint8_t animation;
-    char buffer[16];
-
-    CST7565Driver::suspendDrawing();
-
-    CST7565Driver::fill(1, 11, 126, 11, CST7565Driver::FILL_OPERATION_FILL);
-
-    animation++;
+//    static const uint16_t FIRE[8] = {
+//    		CImgData::IMG_HEATING_ANIM_1,
+//			CImgData::IMG_HEATING_ANIM_2,
+//			CImgData::IMG_HEATING_ANIM_3,
+//			CImgData::IMG_HEATING_ANIM_4,
+//			CImgData::IMG_HEATING_ANIM_5,
+//			CImgData::IMG_HEATING_ANIM_4,
+//			CImgData::IMG_HEATING_ANIM_3,
+//			CImgData::IMG_HEATING_ANIM_2
+//    };
+//    static uint8_t animation;
+//    char buffer[16];
+//
+//    CST7565Driver::suspendDrawing();
+//
+//    CST7565Driver::fill(1, 11, 126, 11, CST7565Driver::FILL_OPERATION_FILL);
+//
+//    animation++;
 //
 //    if (CGUI::getDriverPeripherals()->getRelay()->isOn())
 //    {
@@ -336,42 +336,42 @@ void CScreenDevice::drawHeader(IDateTime *dateTime)
 //        CST7565Driver::imgBitBlt(14, 0, CImgData::IMG_COMMUNICATION, CST7565Driver::BIT_OPERATION_OR);
 //    }
 
-    snprintf(
-            buffer,
-            sizeof(buffer),
-            "%02d.%02d.%04d",
-            dateTime->getDay(),
-            dateTime->getMonth(),
-            dateTime->getYear());
-
-    CGraphicFont::drawText(
-            48,
-            2,
-            79,
-            11,
-            0,
-            buffer,
-            CFont::FONT_2,
-            CGraphicFont::PR_NORMAL,
-            CGraphicFont::AT_CENTER,
-            CGraphicFont::MULTILINE_OFF,
-            {CST7565Driver::BIT_OPERATION_XOR});
-
-	snprintf(buffer, sizeof(buffer), "%02d:%02d", dateTime->getHours(), dateTime->getMinutes());
-
-    CGraphicFont::drawText(
-            0,
-            1,
-            122,
-            10,
-            0,
-            buffer,
-            CFont::FONT_1,
-            CGraphicFont::PR_NORMAL,
-            CGraphicFont::AT_RIGHT,
-            CGraphicFont::MULTILINE_OFF,
-            {CST7565Driver::BIT_OPERATION_XOR});
-
-    CST7565Driver::resumeDrawing();
+//    snprintf(
+//            buffer,
+//            sizeof(buffer),
+//            "%02d.%02d.%04d",
+//            dateTime->getDay(),
+//            dateTime->getMonth(),
+//            dateTime->getYear());
+//
+//    CGraphicFont::drawText(
+//            48,
+//            2,
+//            79,
+//            11,
+//            0,
+//            buffer,
+//            CFont::FONT_2,
+//            CGraphicFont::PR_NORMAL,
+//            CGraphicFont::AT_CENTER,
+//            CGraphicFont::MULTILINE_OFF,
+//            {CST7565Driver::BIT_OPERATION_XOR});
+//
+//	snprintf(buffer, sizeof(buffer), "%02d:%02d", dateTime->getHours(), dateTime->getMinutes());
+//
+//    CGraphicFont::drawText(
+//            0,
+//            1,
+//            122,
+//            10,
+//            0,
+//            buffer,
+//            CFont::FONT_1,
+//            CGraphicFont::PR_NORMAL,
+//            CGraphicFont::AT_RIGHT,
+//            CGraphicFont::MULTILINE_OFF,
+//            {CST7565Driver::BIT_OPERATION_XOR});
+//
+//    CST7565Driver::resumeDrawing();
 }
 
