@@ -15,8 +15,9 @@
 const AMenuList::SMenuItem CMenuGlowne::MENU_ITEMS[] =
 {
 		{CNapisy::IDT_PAROWANIE},
-		{CNapisy::IDT_PRACA},
-		{CNapisy::IDT_EDYTUJ},
+		{CNapisy::IDT_NASTEPNY_SERWIS},
+		{CNapisy::IDT_EDYTUJ_LICZNIK},
+		{CNapisy::IDT_INFO},
 };
 
 CMenuGlowne::CMenuGlowne() :
@@ -51,10 +52,10 @@ void CMenuGlowne::onItemSelected(SMenuItem* menuItem)
 		delete screen;
 		break;
 	}
-	case CNapisy::IDT_PRACA:
+	case CNapisy::IDT_NASTEPNY_SERWIS:
 	{
 		CScreenEnterCode* screen = new CScreenEnterCode(8);
-		screen->init(CNapisy::IDT_PRACA);
+		screen->init(CNapisy::IDT_NASTEPNY_SERWIS);
 		CContext::showScreen(screen);
 		int32_t result = 0;
 		if(screen->getResult(&result))
@@ -64,10 +65,10 @@ void CMenuGlowne::onItemSelected(SMenuItem* menuItem)
 		delete screen;
 		break;
 	}
-	case CNapisy::IDT_EDYTUJ:
+	case CNapisy::IDT_EDYTUJ_LICZNIK:
 	{
 		CScreenEnterCode* screen = new CScreenEnterCode(8);
-		screen->init(CNapisy::IDT_EDYTUJ);
+		screen->init(CNapisy::IDT_EDYTUJ_LICZNIK);
 		CContext::showScreen(screen);
 		int32_t result = 0;
 		if(screen->getResult(&result))
