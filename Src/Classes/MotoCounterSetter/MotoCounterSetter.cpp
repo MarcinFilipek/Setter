@@ -12,6 +12,11 @@ void MotoCounterSetter::setCounterAddress(uint32_t adr)
 	counterAddress = adr;
 }
 
+uint32_t MotoCounterSetter::getCounterAddress()
+{
+	return counterAddress;
+}
+
 void MotoCounterSetter::createFrame(Wtp3Driver* driver)
 {
 	driver->startFrame(counterAddress, 0x01, 0x01);

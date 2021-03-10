@@ -9,6 +9,8 @@
 #include "CMenuGlowne.h"
 #include "CScreenMenu.h"
 #include "CGUI.h"
+#include "CTextResources.h"
+#include "Driver.h"
 
 CScreenDevice::CScreenDevice() : m_timer(CTimer::UNIT_MILISEC)
 {
@@ -107,39 +109,82 @@ bool CScreenDevice::onKey(int8_t keyCode, int8_t keyEvent)
 
 void CScreenDevice::draw()
 {
-
-//    IDateTime *dateTime = CGUI::getDateTime();
-
     CST7565Driver::suspendDrawing();
     CST7565Driver::clear();
+    char buffer1[32];
+    char m_buffer[32];
+    int counterAddress = Driver::getInstance().getDriverCommunication()->getMotoCounterSetter()->getCounterAddress();
 
-//    drawHeader(dateTime);
+    if(counterAddress > 0)
+    {
+    	CTextResources::copyTextToBuffer(buffer1, CNapisy::IDT_ADRES, 32);
+		snprintf(m_buffer, sizeof(m_buffer), "%s %d", buffer1, counterAddress);
 
-//    char buffer[60];
+		CGraphicFont::drawText( //
+				0,
+				0,
+				127,
+				10,
+				0,
+				m_buffer,
+				CFont::FONT_1,
+				CGraphicFont::PR_NORMAL,
+				CGraphicFont::AT_CENTER,
+				CGraphicFont::MULTILINE_OFF,
+				{CST7565Driver::BIT_OPERATION_OR});
 
-//    SlaveCommunicator* slave = CGUI::getDriverCommunication()->getSlaveCommunicator();
+		CST7565Driver::fill(1, 11, 126, 11, CST7565Driver::FILL_OPERATION_FILL);
 
-//    uint16_t startHeight = 19;
+		CTextResources::copyTextToBuffer(buffer1, CNapisy::IDT_AKTUALNY_STAN, 32);
+		snprintf(m_buffer, sizeof(m_buffer), "%s %d", buffer1, 99999999);
 
-    CST7565Driver::fill(1, 52, 126, 52, CST7565Driver::FILL_OPERATION_FILL);
+		CGraphicFont::drawText( //
+				0,
+				20,
+				127,
+				30,
+				0,
+				m_buffer,
+				CFont::FONT_1,
+				CGraphicFont::PR_NORMAL,
+				CGraphicFont::AT_LEFT,
+				CGraphicFont::MULTILINE_OFF,
+				{CST7565Driver::BIT_OPERATION_OR});
 
-//    char buffer1[32];
-//    char m_buffer[32];
-//    		CTextResources::copyTextToBuffer(buffer1, CNapisy::IDT_URZADZENIA, 32);
-//            snprintf(m_buffer, sizeof(m_buffer), "%s (%d/%d)", buffer1, m_currentPage+1, DevicePool::MAX_DEVICES);
-//
-//    CGraphicFont::drawText( //
-//            0,
-//			53,
-//			127,
-//			63,
-//			0,
-//			m_buffer,
-//            CFont::FONT_1,
-//            CGraphicFont::PR_NORMAL,
-//            CGraphicFont::AT_CENTER,
-//            CGraphicFont::MULTILINE_OFF,
-//            {CST7565Driver::BIT_OPERATION_OR});
+		CTextResources::copyTextToBuffer(buffer1, CNapisy::IDT_KOLEJNY_SERWIS, 32);
+		snprintf(m_buffer, sizeof(m_buffer), "%s %d", buffer1, 99999999);
+
+		CGraphicFont::drawText( //
+				0,
+				40,
+				127,
+				50,
+				0,
+				m_buffer,
+				CFont::FONT_1,
+				CGraphicFont::PR_NORMAL,
+				CGraphicFont::AT_LEFT,
+				CGraphicFont::MULTILINE_OFF,
+				{CST7565Driver::BIT_OPERATION_OR});
+    }
+    else
+    {
+    	CTextResources::copyTextToBuffer(m_buffer, CNapisy::IDT_BRAK_WYBRANEGO_LICZNIKA, 32);
+//		snprintf(m_buffer, sizeof(m_buffer), "%s %d", buffer1, counterAddress);
+
+		CGraphicFont::drawText( //
+				0,
+				30,
+				127,
+				40,
+				0,
+				m_buffer,
+				CFont::FONT_1,
+				CGraphicFont::PR_NORMAL,
+				CGraphicFont::AT_CENTER,
+				CGraphicFont::MULTILINE_OFF,
+				{CST7565Driver::BIT_OPERATION_OR});
+    }
 
 //    int16_t rssi = CGUI::getDriverCommunication()->getRepeater()->getDevicePool()->getItem(m_currentPage)->getSignal(0);//slave->getRssi();
 //    int16_t rssi = 85;

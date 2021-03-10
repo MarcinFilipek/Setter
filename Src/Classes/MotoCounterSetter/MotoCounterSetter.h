@@ -52,6 +52,7 @@ public:
 		return REC_FRAME_NO_ANSWER;
 	}
 	void setCounterAddress(uint32_t adr);
+	uint32_t getCounterAddress();
 
 	void setNextInspection(uint32_t value);
 	void setCurrentCounter(uint32_t value);

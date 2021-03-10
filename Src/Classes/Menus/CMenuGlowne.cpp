@@ -15,9 +15,8 @@
 const AMenuList::SMenuItem CMenuGlowne::MENU_ITEMS[] =
 {
 		{CNapisy::IDT_PAROWANIE},
-		{CNapisy::IDT_NASTEPNY_SERWIS},
+		{CNapisy::IDT_KOLEJNY_SERWIS},
 		{CNapisy::IDT_EDYTUJ_LICZNIK},
-		{CNapisy::IDT_INFO},
 };
 
 CMenuGlowne::CMenuGlowne() :
@@ -52,10 +51,10 @@ void CMenuGlowne::onItemSelected(SMenuItem* menuItem)
 		delete screen;
 		break;
 	}
-	case CNapisy::IDT_NASTEPNY_SERWIS:
+	case CNapisy::IDT_KOLEJNY_SERWIS:
 	{
 		CScreenEnterCode* screen = new CScreenEnterCode(8);
-		screen->init(CNapisy::IDT_NASTEPNY_SERWIS);
+		screen->init(CNapisy::IDT_KOLEJNY_SERWIS);
 		CContext::showScreen(screen);
 		int32_t result = 0;
 		if(screen->getResult(&result))

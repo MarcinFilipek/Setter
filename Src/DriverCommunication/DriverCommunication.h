@@ -15,7 +15,7 @@
 class DriverCommunication: public IUpdatable
 {
 public:
-	DriverCommunication(){}
+	DriverCommunication(): address(1){}
 	virtual ~DriverCommunication(){}
 	void init();
 	void update();
@@ -23,7 +23,9 @@ public:
 	{
 		return &motoCounterSetter;
 	}
+	uint32_t getAddress();
 private:
+	uint32_t address;
 	MotoCounterSetter motoCounterSetter;
 	IWtp3Device* wtp3Devices[1];
 	Wtp3Driver wtp3Driver;

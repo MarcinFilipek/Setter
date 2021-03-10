@@ -111,7 +111,7 @@ void CScreenLogo::draw()
 
 	CST7565Driver::fill(0, 47, 127, 47, CST7565Driver::FILL_OPERATION_FILL);
 
-    	snprintf(buffer, sizeof(buffer), "SC-1");
+    snprintf(buffer, sizeof(buffer), "CC-1");
 
 	CGraphicFont::drawText( //
 			20,
