@@ -22,7 +22,7 @@ public:
 	virtual bool isNewValue() = 0;
 	virtual uint8_t getSize() = 0;
 	virtual uint8_t getCommand() = 0;
-	virtual uint8_t* getData() = 0;
+	virtual uint8_t* getDataPtr() = 0;
 	virtual void clear() = 0;
 
 };

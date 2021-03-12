@@ -1,8 +1,11 @@
 class CounterCommand
 {
 public:
-	typedef enum {
-		NEXT_INSPECTION = 1,
-		SET_CURRENT_COUNTER = 2,
+	enum {
+		INITIALIZATION = 1,
+		SET_NEXT_INSPECTION = 2,
+		SET_CURRENT_COUNTER = 3,
+		GET_CURRENT_COUNTER = 4,
+		GET_NEXT_INSPECTION = 5,
 	};
 };

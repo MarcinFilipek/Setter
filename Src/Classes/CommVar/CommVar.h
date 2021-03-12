@@ -42,13 +42,21 @@ public:
 	{
 		return command;
 	}
-	uint8_t* getData()
+	uint8_t* getDataPtr()
 	{
 		return (uint8_t*) &data;
 	}
-	void setData(T _data)
+	T getData()
+	{
+		return data;
+	}
+	void setData(T _data, bool refresh = true)
 	{
 		data = _data;
+		newValue = refresh ? true : false;
+	}
+	void forceSend()
+	{
 		newValue = true;
 	}
 	void clear()

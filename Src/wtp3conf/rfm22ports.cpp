@@ -36,7 +36,7 @@ void rfm22ports_initIntPort()
 
     GPIO_InitStruct.Pin = RFM22_INT_BIT;
     GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
-    GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
     GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
     HAL_GPIO_Init(RFM22_INT_PORT, &GPIO_InitStruct);
 
@@ -61,7 +61,7 @@ void rfm22ports_initSDNPort()
 
     GPIO_InitStruct.Pin = RFM22_SDN_BIT;
     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Pull = GPIO_PULLDOWN;
     GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
     HAL_GPIO_Init(RFM22_SDN_PORT, &GPIO_InitStruct);
     //HAL_GPIO_WritePin(RFM22_SDN_PORT, RFM22_SDN_BIT, GPIO_PIN_SET);
@@ -86,7 +86,7 @@ void rfm22ports_initSPI()
 	RFM22_SPI_HANDLE.Init.CLKPolarity = SPI_POLARITY_LOW;
 	RFM22_SPI_HANDLE.Init.CLKPhase = SPI_PHASE_1EDGE;
 	RFM22_SPI_HANDLE.Init.NSS = SPI_NSS_SOFT;
-	RFM22_SPI_HANDLE.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;
+	RFM22_SPI_HANDLE.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_8;
 	RFM22_SPI_HANDLE.Init.FirstBit = SPI_FIRSTBIT_MSB;
 	RFM22_SPI_HANDLE.Init.TIMode = SPI_TIMODE_DISABLED;
 	RFM22_SPI_HANDLE.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLED;
