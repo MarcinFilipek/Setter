@@ -114,6 +114,8 @@ void CScreenDevice::draw()
     char buffer1[32];
     char m_buffer[32];
     int counterAddress = Driver::getInstance().getDriverCommunication()->getMotoCounterSetter()->getCounterAddress();
+    int currentCounter = Driver::getInstance().getDriverCommunication()->getMotoCounterSetter()->getCurrentCounter();
+    int nextInspection = Driver::getInstance().getDriverCommunication()->getMotoCounterSetter()->getNextInspection();
 
     if(counterAddress > 0)
     {
@@ -136,7 +138,7 @@ void CScreenDevice::draw()
 		CST7565Driver::fill(1, 11, 126, 11, CST7565Driver::FILL_OPERATION_FILL);
 
 		CTextResources::copyTextToBuffer(buffer1, CNapisy::IDT_AKTUALNY_STAN, 32);
-		snprintf(m_buffer, sizeof(m_buffer), "%s %d", buffer1, 99999999);
+		snprintf(m_buffer, sizeof(m_buffer), "%s %d", buffer1, currentCounter);
 
 		CGraphicFont::drawText( //
 				0,
@@ -152,7 +154,7 @@ void CScreenDevice::draw()
 				{CST7565Driver::BIT_OPERATION_OR});
 
 		CTextResources::copyTextToBuffer(buffer1, CNapisy::IDT_KOLEJNY_SERWIS, 32);
-		snprintf(m_buffer, sizeof(m_buffer), "%s %d", buffer1, 99999999);
+		snprintf(m_buffer, sizeof(m_buffer), "%s %d", buffer1, nextInspection);
 
 		CGraphicFont::drawText( //
 				0,

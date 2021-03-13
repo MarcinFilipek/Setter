@@ -17,10 +17,12 @@ class MotoCounterSetter: public IWtp3Device
 public:
 	MotoCounterSetter(): counterAddress(0)
 	{
-		nextInspection.setCommand(CounterCommand::NEXT_INSPECTION);
+		initialization.setCommand(CounterCommand::INITIALIZATION);
+		nextInspection.setCommand(CounterCommand::SET_NEXT_INSPECTION);
 		currentCounter.setCommand(CounterCommand::SET_CURRENT_COUNTER);
-		parameters[0] = &nextInspection;
-		parameters[1] = &currentCounter;
+		parameters[0] = &initialization;
+		parameters[1] = &nextInspection;
+		parameters[2] = &currentCounter;
 	}
 	virtual ~MotoCounterSetter()
 	{
@@ -47,21 +49,24 @@ public:
 		return false;
 	}
 	void createFrame(Wtp3Driver* driver);
-	ERecFrameResult receiveFrame(Wtp3Driver* driver)
-	{
-		return REC_FRAME_NO_ANSWER;
-	}
+	ERecFrameResult receiveFrame(Wtp3Driver* driver);
 	void setCounterAddress(uint32_t adr);
 	uint32_t getCounterAddress();
 
 	void setNextInspection(uint32_t value);
+	uint32_t getNextInspection();
 	void setCurrentCounter(uint32_t value);
+	uint32_t getCurrentCounter();
 private:
 	uint32_t counterAddress;
-	static const uint8_t NUM_OF_PARAMS = 2;
+	static const uint8_t NUM_OF_PARAMS = 3;
 	ICommVar* parameters[NUM_OF_PARAMS];
+	CommVar<uint32_t> initialization;
 	CommVar<uint32_t> nextInspection;
 	CommVar<uint32_t> currentCounter;
+
+	void handlePackage(uint8_t command, uint32_t data);
+	void sendInitPackage();
 };
 
 #endif /* CLASSES_MOTOCOUNTERSETTER_MOTOCOUNTERSETTER_H_ */

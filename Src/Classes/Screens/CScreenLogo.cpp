@@ -103,7 +103,7 @@ void CScreenLogo::draw()
 
     char buffer[16];
 
-    CImgData::TImgAddress logo = CImgData::IMG_LOGO_LEMARPOL;
+    CImgData::TImgAddress logo = CImgData::IMG_LOGO_ELIAS_DUZE;
     uint8_t posY = 5;
 
 
