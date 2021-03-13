@@ -26,4 +26,9 @@
 #define RFM22_SPI_CS_PORT           GPIOB
 #define RFM22_SPI_CS_BIT            GPIO_PIN_12
 
+#define RFM22_VCC_PORT_ENABLE()  __GPIOC_CLK_ENABLE()
+#define RFM22_VCC_PORT	GPIOC
+#define RFM22_VCC_BIT	GPIO_PIN_8
+
+
 #endif //RFM22_HRD_H_

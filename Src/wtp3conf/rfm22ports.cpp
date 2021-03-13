@@ -45,31 +45,43 @@ void rfm22ports_initIntPort()
 
 void rfm22ports_initVccPort()
 {
+    //od razu po przelaczeniu na wyjscie stan wysoki (brak zasilania)
+    GPIO_InitTypeDef GPIO_InitStruct;
+
+    RFM22_VCC_PORT_ENABLE();
+
+    GPIO_InitStruct.Pin = RFM22_VCC_BIT;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(RFM22_VCC_PORT, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(RFM22_VCC_PORT, RFM22_VCC_BIT, GPIO_PIN_SET);
 }
 
 void rfm22ports_setVcc(uint8_t value)
 {
+	HAL_GPIO_WritePin(RFM22_VCC_PORT, RFM22_VCC_BIT, value ? GPIO_PIN_SET : GPIO_PIN_RESET);
 }
 
 void rfm22ports_initSDNPort()
 {
     //od razu po przelaczeniu na wyjscie stan wysoki (shutdown)
 
-    GPIO_InitTypeDef GPIO_InitStruct;
-
-    RFM22_SDN_PORT_ENABLE();
-
-    GPIO_InitStruct.Pin = RFM22_SDN_BIT;
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
-    HAL_GPIO_Init(RFM22_SDN_PORT, &GPIO_InitStruct);
-    //HAL_GPIO_WritePin(RFM22_SDN_PORT, RFM22_SDN_BIT, GPIO_PIN_SET);
+//    GPIO_InitTypeDef GPIO_InitStruct;
+//
+//    RFM22_SDN_PORT_ENABLE();
+//
+//    GPIO_InitStruct.Pin = RFM22_SDN_BIT;
+//    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+//    GPIO_InitStruct.Pull = GPIO_NOPULL;
+//    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+//    HAL_GPIO_Init(RFM22_SDN_PORT, &GPIO_InitStruct);
+//    HAL_GPIO_WritePin(RFM22_SDN_PORT, RFM22_SDN_BIT, GPIO_PIN_SET);
 }
 
 void rfm22ports_setSDN(uint8_t value)
 {
-    HAL_GPIO_WritePin(RFM22_SDN_PORT, RFM22_SDN_BIT, value ? GPIO_PIN_SET : GPIO_PIN_RESET);
+//    HAL_GPIO_WritePin(RFM22_SDN_PORT, RFM22_SDN_BIT, value ? GPIO_PIN_SET : GPIO_PIN_RESET);
 }
 
 uint8_t rfm22ports_getResetMethod()

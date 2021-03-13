@@ -15,7 +15,7 @@
 class MotoCounterSetter: public IWtp3Device
 {
 public:
-	MotoCounterSetter(): counterAddress(123)
+	MotoCounterSetter(): counterAddress(0)
 	{
 		initialization.setCommand(CounterCommand::INITIALIZATION);
 		nextInspection.setCommand(CounterCommand::SET_NEXT_INSPECTION);
