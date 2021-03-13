@@ -103,11 +103,10 @@ void CScreenLogo::draw()
 
     char buffer[16];
 
-    CImgData::TImgAddress logo = CImgData::IMG_LOGO_ELIAS_DUZE;
-    uint8_t posY = 5;
+    CImgData::TImgAddress logo = CImgData::IMG_LOGO_LEMARPOL_DUZE;
 
 
-	CST7565Driver::imgBitBltCenterBox(0, posY, 127, 0, logo, CST7565Driver::BIT_OPERATION_OR);
+	CST7565Driver::imgBitBltCenterBox(0, 0, 127, 0, logo, CST7565Driver::BIT_OPERATION_OR);
 
 	CST7565Driver::fill(0, 47, 127, 47, CST7565Driver::FILL_OPERATION_FILL);
 

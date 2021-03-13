@@ -119,60 +119,77 @@ void CScreenDevice::draw()
 
     if(counterAddress > 0)
     {
-    	CTextResources::copyTextToBuffer(buffer1, CNapisy::IDT_ADRES, 32);
-		snprintf(m_buffer, sizeof(m_buffer), "%s %d", buffer1, counterAddress);
+    	if(nextInspection > 0)
+    	{
+			CTextResources::copyTextToBuffer(buffer1, CNapisy::IDT_ADRES, 32);
+			snprintf(m_buffer, sizeof(m_buffer), "%s %d", buffer1, counterAddress);
 
-		CGraphicFont::drawText( //
-				0,
-				0,
-				127,
-				10,
-				0,
-				m_buffer,
-				CFont::FONT_1,
-				CGraphicFont::PR_NORMAL,
-				CGraphicFont::AT_CENTER,
-				CGraphicFont::MULTILINE_OFF,
-				{CST7565Driver::BIT_OPERATION_OR});
+			CGraphicFont::drawText( //
+					0,
+					0,
+					127,
+					10,
+					0,
+					m_buffer,
+					CFont::FONT_1,
+					CGraphicFont::PR_NORMAL,
+					CGraphicFont::AT_CENTER,
+					CGraphicFont::MULTILINE_OFF,
+					{CST7565Driver::BIT_OPERATION_OR});
 
-		CST7565Driver::fill(1, 11, 126, 11, CST7565Driver::FILL_OPERATION_FILL);
+			CST7565Driver::fill(1, 11, 126, 11, CST7565Driver::FILL_OPERATION_FILL);
 
-		CTextResources::copyTextToBuffer(buffer1, CNapisy::IDT_AKTUALNY_STAN, 32);
-		snprintf(m_buffer, sizeof(m_buffer), "%s %d", buffer1, currentCounter);
+			CTextResources::copyTextToBuffer(buffer1, CNapisy::IDT_AKTUALNY_STAN, 32);
+			snprintf(m_buffer, sizeof(m_buffer), "%s %d", buffer1, currentCounter);
 
-		CGraphicFont::drawText( //
-				0,
-				20,
-				127,
-				30,
-				0,
-				m_buffer,
-				CFont::FONT_1,
-				CGraphicFont::PR_NORMAL,
-				CGraphicFont::AT_LEFT,
-				CGraphicFont::MULTILINE_OFF,
-				{CST7565Driver::BIT_OPERATION_OR});
+			CGraphicFont::drawText( //
+					0,
+					20,
+					127,
+					30,
+					0,
+					m_buffer,
+					CFont::FONT_1,
+					CGraphicFont::PR_NORMAL,
+					CGraphicFont::AT_LEFT,
+					CGraphicFont::MULTILINE_OFF,
+					{CST7565Driver::BIT_OPERATION_OR});
 
-		CTextResources::copyTextToBuffer(buffer1, CNapisy::IDT_KOLEJNY_SERWIS, 32);
-		snprintf(m_buffer, sizeof(m_buffer), "%s %d", buffer1, nextInspection);
+			CTextResources::copyTextToBuffer(buffer1, CNapisy::IDT_SERWIS, 32);
+			snprintf(m_buffer, sizeof(m_buffer), "%s %d", buffer1, nextInspection);
 
-		CGraphicFont::drawText( //
-				0,
-				40,
-				127,
-				50,
-				0,
-				m_buffer,
-				CFont::FONT_1,
-				CGraphicFont::PR_NORMAL,
-				CGraphicFont::AT_LEFT,
-				CGraphicFont::MULTILINE_OFF,
-				{CST7565Driver::BIT_OPERATION_OR});
+			CGraphicFont::drawText( //
+					0,
+					40,
+					127,
+					50,
+					0,
+					m_buffer,
+					CFont::FONT_1,
+					CGraphicFont::PR_NORMAL,
+					CGraphicFont::AT_LEFT,
+					CGraphicFont::MULTILINE_OFF,
+					{CST7565Driver::BIT_OPERATION_OR});
+    	} else {
+    	  	CTextResources::copyTextToBuffer(m_buffer, CNapisy::IDT_BRAK_KOMUNIKACJI, 32);
+
+			CGraphicFont::drawText( //
+					0,
+					30,
+					127,
+					40,
+					0,
+					m_buffer,
+					CFont::FONT_1,
+					CGraphicFont::PR_NORMAL,
+					CGraphicFont::AT_CENTER,
+					CGraphicFont::MULTILINE_OFF,
+					{CST7565Driver::BIT_OPERATION_OR});
+    	}
     }
     else
     {
     	CTextResources::copyTextToBuffer(m_buffer, CNapisy::IDT_BRAK_WYBRANEGO_LICZNIKA, 32);
-//		snprintf(m_buffer, sizeof(m_buffer), "%s %d", buffer1, counterAddress);
 
 		CGraphicFont::drawText( //
 				0,
