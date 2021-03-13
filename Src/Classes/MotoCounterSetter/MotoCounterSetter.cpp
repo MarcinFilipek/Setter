@@ -59,8 +59,11 @@ ERecFrameResult MotoCounterSetter::receiveFrame(Wtp3Driver* driver)
 {
 	uint8_t command = 0;
 	uint32_t data = 0;
-	driver->readNextCmd(&command, (uint8_t*)&data);
-	handlePackage(command, data);
+	while(driver->hasNextCmd())
+	{
+		driver->readNextCmd(&command, (uint8_t*)&data);
+		handlePackage(command, data);
+	}
 	return REC_FRAME_NO_ANSWER;
 }
 
