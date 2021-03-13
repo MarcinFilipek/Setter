@@ -1,0 +1,41 @@
+Compilation date : 13.03.2021 11:52:36
+ 
+pathTextDataIn = resource\text.csv
+pathGraphicsDataIn = resource\graphics.png
+pathGraphicsIdSource = resource\graphicsId.txt
+ 
+pathTextIdEnumOut = resourceOutput\textIdEnum.h
+ 
+pathTextLanguageEnumOut = resourceOutput\languageIdEnum.h
+pathGraphicsIdEnumOut = resourceOutput\graphicsIdEnum.h
+ 
+pathEepromDataBinOut = resourceOutput\flash.bin
+ 
+brak pliku z grafika kompilacja samych napisow
+ 
+**************** Text section ****************
+ 
+Languages number 1
+IDT_NULL                                 size=1
+IDT_PAROWANIE                            size=10
+IDT_KOLEJNY_SERWIS                       size=15
+IDT_EDYTUJ_LICZNIK                       size=15
+IDT_MENU                                 size=5
+IDT_PRACA                                size=6
+IDT_ZATWIERDZ                            size=10
+IDT_ANULUJ                               size=7
+IDT_ADRES                                size=6
+IDT_TAK                                  size=4
+IDT_NIE                                  size=4
+IDT_OK                                   size=3
+IDT_USUN                                 size=5
+IDT_WYJSCIE                              size=8
+IDT_DALEJ                                size=6
+IDT_INFO                                 size=5
+IDT_AKTUALNY_STAN                        size=14
+IDT_BRAK_WYBRANEGO_LICZNIKA              size=24
+IDT_SERWIS                               size=7
+IDT_BRAK_KOMUNIKACJI                     size=17
+ 
+ 
+Total text size = 172 bytes
