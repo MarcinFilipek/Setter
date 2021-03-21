@@ -103,7 +103,7 @@ void CScreenLogo::draw()
 
     char buffer[16];
 
-    CImgData::TImgAddress logo = CImgData::IMG_LOGO_LEMARPOL_DUZE;
+    CImgData::TImgAddress logo = CImgData::IMG_LOGO_LEMARPOL;
 
 
 	CST7565Driver::imgBitBltCenterBox(0, 0, 127, 0, logo, CST7565Driver::BIT_OPERATION_OR);
